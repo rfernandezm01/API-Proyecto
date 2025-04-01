@@ -21,9 +21,9 @@ public class UsuarioController {
         return usuarioService.obtenerTodos();
     }
 
-    @GetMapping("/{id}")
-    public Optional<UsuarioDTO> obtenerPorId(@PathVariable Long id) {
-        return usuarioService.obtenerPorId(id);
+    @GetMapping("/{id_usuario}")
+    public Optional<UsuarioDTO> obtenerPorId(@PathVariable Long id_usuario) {
+        return usuarioService.obtenerPorId(id_usuario);
     }
 
     @PostMapping
@@ -31,9 +31,9 @@ public class UsuarioController {
         return usuarioService.guardar(usuarioDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminarUsuario(@PathVariable Long id) {
-        usuarioService.eliminar(id);
+    @DeleteMapping("/{id_usuario}")
+    public void eliminarUsuario(@PathVariable Long id_usuario) {
+        usuarioService.eliminar(id_usuario);
     }
 
     @GetMapping("/email/{email}")

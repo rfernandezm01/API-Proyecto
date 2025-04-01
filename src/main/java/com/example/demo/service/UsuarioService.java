@@ -16,14 +16,12 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // Convertir entidad Usuario a DTO
     private UsuarioDTO convertirAUsuarioDTO(Usuario usuario) {
-        return new UsuarioDTO(usuario.getId(), usuario.getNombre(), usuario.getEmail());
+        return new UsuarioDTO(usuario.getId_usuario(), usuario.getNombre_usuario(), usuario.getEmail(), usuario.getContraseña());
     }
 
-    // Convertir DTO a entidad Usuario
     private Usuario convertirAUsuario(UsuarioDTO usuarioDTO) {
-        return new Usuario(usuarioDTO.getNombre(), usuarioDTO.getEmail());
+        return new Usuario(usuarioDTO.getNombre_usuario(), usuarioDTO.getEmail(), usuarioDTO.getContraseña());
     }
 
     public List<UsuarioDTO> obtenerTodos() {
@@ -31,8 +29,8 @@ public class UsuarioService {
         return usuarios.stream().map(this::convertirAUsuarioDTO).collect(Collectors.toList());
     }
 
-    public Optional<UsuarioDTO> obtenerPorId(Long id) {
-        return usuarioRepository.findById(id).map(this::convertirAUsuarioDTO);
+    public Optional<UsuarioDTO> obtenerPorId(Long id_usuario) {
+        return usuarioRepository.findById(id_usuario).map(this::convertirAUsuarioDTO);
     }
 
     public UsuarioDTO guardar(UsuarioDTO usuarioDTO) {
@@ -41,8 +39,8 @@ public class UsuarioService {
         return convertirAUsuarioDTO(usuario);
     }
 
-    public void eliminar(Long id) {
-        usuarioRepository.deleteById(id);
+    public void eliminar(Long id_usuario) {
+        usuarioRepository.deleteById(id_usuario);
     }
 
     public Optional<UsuarioDTO> obtenerPorEmail(String email) {
