@@ -1,35 +1,37 @@
 package com.example.demo.dto;
 
+import com.example.demo.model.Usuario;
+
 public class UsuarioDTO {
-    private Long id_usuario;
-    private String nombre_usuario;
+    private Long idUsuario;
+    private String nombreUsuario;
     private String email;
     private String contraseña;
 
     public UsuarioDTO() {}
 
-    public UsuarioDTO(Long id_usuario, String nombre_usuario, String email, String contraseña) {
-        this.id_usuario = id_usuario;
-        this.nombre_usuario = nombre_usuario;
+    public UsuarioDTO(Long idUsuario, String nombreUsuario, String email, String contraseña) {
+        this.idUsuario = idUsuario;
+        this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.contraseña = contraseña;
     }
 
     // Getters y Setters
-    public Long getId_usuario() {
-        return id_usuario;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId_usuario(Long id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public String getNombre_usuario() {
-        return nombre_usuario;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 
-    public void setNombre_usuario(String nombre_usuario) {
-        this.nombre_usuario = nombre_usuario;
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getEmail() {
