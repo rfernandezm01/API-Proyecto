@@ -46,9 +46,19 @@ public class Grupo {
                 idGrupo,
                 nombreGrupo,
                 descripcionGrupo,
-                listaUsuarios.stream().map(Usuario::getIdUsuario).collect(Collectors.toList()),
+                listaUsuarios.stream()
+                        .map(usuario -> usuario.getIdUsuario().intValue())
+                        .collect(Collectors.toList()),
                 listaAgendas.stream().map(Agenda::getIdAgenda).collect(Collectors.toList())
         );
+    }
+
+    public Integer getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(Integer idGrupo) {
+        this.idGrupo = idGrupo;
     }
 
     // Getters y Setters

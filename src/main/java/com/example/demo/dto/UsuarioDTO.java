@@ -1,20 +1,21 @@
 package com.example.demo.dto;
 
 import com.example.demo.model.Usuario;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 public class UsuarioDTO {
     private Long idUsuario;
     private String nombreUsuario;
     private String email;
-    private String contraseña;
+    private String password;
 
     public UsuarioDTO() {}
 
-    public UsuarioDTO(Long idUsuario, String nombreUsuario, String email, String contraseña) {
+    public UsuarioDTO(Long idUsuario, String nombreUsuario, String email, String password) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
-        this.contraseña = contraseña;
+        this.password = password;
     }
 
     // Getters y Setters
@@ -43,10 +44,10 @@ public class UsuarioDTO {
     }
 
     public String getContraseña() {
-        return contraseña;
+        return password;
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        this.password = contraseña;
     }
 }

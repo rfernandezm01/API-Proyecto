@@ -7,12 +7,12 @@ public class AgendaDTO {
     private String nomAgenda;
     private String notasCalendario;
     private List<Long> listaUsuarios;
-    private List<Long> listaMensajes;
+    private List<Integer> listaMensajes;
 
     public AgendaDTO() {}
 
     public AgendaDTO(Integer idAgenda, String nomAgenda, String notasCalendario,
-                     List<Long> listaUsuarios, List<Long> listaMensajes) {
+                     List<Long> listaUsuarios, List<Integer> listaMensajes) {
         this.idAgenda = idAgenda;
         this.nomAgenda = nomAgenda;
         this.notasCalendario = notasCalendario;
@@ -53,11 +53,11 @@ public class AgendaDTO {
         this.listaUsuarios = listaUsuarios;
     }
 
-    public List<Long> getListaMensajes() {
+    public List<Integer> getListaMensajes() {
         return listaMensajes;
     }
 
-    public void setListaMensajes(List<Long> listaMensajes) {
+    public void setListaMensajes(List<Integer> listaMensajes) {
         this.listaMensajes = listaMensajes;
     }
 }

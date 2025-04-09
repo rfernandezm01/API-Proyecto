@@ -50,6 +50,14 @@ public class Agenda {
                 listaMensajes.stream().map(Mensaje::getIdMensaje).collect(Collectors.toList())
         );
     }
+    public Integer getIdAgenda() {
+        return idAgenda;
+    }
+
+    public void setIdAgenda(Integer idAgenda) {
+        this.idAgenda = idAgenda;
+    }
+
 
     // Getters y Setters
     // ...

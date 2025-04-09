@@ -22,11 +22,11 @@ public class Mensaje {
     private Date fechaEnvio;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_emisor_id", nullable = false)
+    @JoinColumn(name = "usuario_emisor", nullable = false)
     private Usuario usuarioEmisor;
 
     @ManyToOne
-    @JoinColumn(name = "agenda_id") // si quieres asociar mensaje a agenda
+    @JoinColumn(name = "id_agenda") // si quieres asociar mensaje a agenda
     private Agenda agenda;
 
     public Mensaje() {}

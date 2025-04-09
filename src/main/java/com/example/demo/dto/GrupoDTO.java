@@ -1,18 +1,20 @@
 package com.example.demo.dto;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+
 import java.util.List;
 
 public class GrupoDTO {
     private Integer idGrupo;
     private String nombreGrupo;
     private String descripcionGrupo;
-    private List<Long> listaUsuarios;  // Solo IDs de usuario
-    private List<Long> listaAgendas;   // Solo IDs de agenda
+    private List<Integer> listaUsuarios;  // Solo IDs de usuario
+    private List<Integer> listaAgendas;   // Solo IDs de agenda
 
     public GrupoDTO() {}
 
     public GrupoDTO(Integer idGrupo, String nombreGrupo, String descripcionGrupo,
-                    List<Long> listaUsuarios, List<Long> listaAgendas) {
+                    List<Integer> listaUsuarios, List<Integer> listaAgendas) {
         this.idGrupo = idGrupo;
         this.nombreGrupo = nombreGrupo;
         this.descripcionGrupo = descripcionGrupo;
@@ -45,19 +47,19 @@ public class GrupoDTO {
         this.descripcionGrupo = descripcionGrupo;
     }
 
-    public List<Long> getListaUsuarios() {
+    public List<Integer> getListaUsuarios() {
         return listaUsuarios;
     }
 
-    public void setListaUsuarios(List<Long> listaUsuarios) {
+    public void setListaUsuarios(List<Integer> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
     }
 
-    public List<Long> getListaAgendas() {
+    public List<Integer> getListaAgendas() {
         return listaAgendas;
     }
 
-    public void setListaAgendas(List<Long> listaAgendas) {
+    public void setListaAgendas(List<Integer> listaAgendas) {
         this.listaAgendas = listaAgendas;
     }
 }
