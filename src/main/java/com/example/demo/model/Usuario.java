@@ -19,18 +19,14 @@ public class Usuario {
 
     @Column(nullable = false)
     private String password;
-
-    // Constructor vacío
     public Usuario() {}
 
-    // Constructor con parámetros
     public Usuario(String nombreUsuario, String email, String password) {
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
     }
 
-    // Constructor que recibe un DTO
     public Usuario(UsuarioDTO usuarioDTO) {
         this.idUsuario = usuarioDTO.getIdUsuario();
         this.nombreUsuario = usuarioDTO.getNombreUsuario();
@@ -38,12 +34,10 @@ public class Usuario {
         this.password = usuarioDTO.getPassword();
     }
 
-    // Convertir a DTO
     public UsuarioDTO toDTO() {
         return new UsuarioDTO(idUsuario, nombreUsuario, email, password);
     }
 
-    // Getters y Setters
     public Long getIdUsuario() {
         return idUsuario;
     }

@@ -9,5 +9,4 @@ public class ZeitKreisApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ZeitKreisApplication.class, args);
 	}
-
 }

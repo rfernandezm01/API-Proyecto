@@ -46,4 +46,15 @@ public class UsuarioService {
     public Optional<UsuarioDTO> obtenerPorEmail(String email) {
         return usuarioRepository.findByEmail(email).map(this::convertirAUsuarioDTO);
     }
+
+    public void registrarUsuario(UsuarioDTO nuevoUsuario) {
+        Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(nuevoUsuario.getEmail());
+
+        if (usuarioExistente.isPresent()) {
+            return;
+        }
+
+        Usuario usuario = convertirAUsuario(nuevoUsuario);
+        usuarioRepository.save(usuario);
+    }
 }

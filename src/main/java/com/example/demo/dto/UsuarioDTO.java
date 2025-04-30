@@ -1,13 +1,11 @@
 package com.example.demo.dto;
 
-import com.example.demo.model.Usuario;
-import jakarta.persistence.criteria.CriteriaBuilder;
-
 public class UsuarioDTO {
     private Long idUsuario;
     private String nombreUsuario;
     private String email;
     private String password;
+    private String query;
 
     public UsuarioDTO() {}
 
@@ -49,5 +47,13 @@ public class UsuarioDTO {
 
     public void setPassword(String contraseña) {
         this.password = contraseña;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
     }
 }
