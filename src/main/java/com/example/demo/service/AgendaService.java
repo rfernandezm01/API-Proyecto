@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.AgendaDTO;
-import com.example.demo.dto.UsuarioDTO;
 import com.example.demo.model.Agenda;
 import com.example.demo.model.Usuario;
 import com.example.demo.AgendaRepository;
@@ -51,10 +50,11 @@ public class AgendaService {
         return agendaRepository.findById(idAgenda).map(this::convertirAAgrendaDTO);
     }
 
-    public void crearAgenda(AgendaDTO agendaDTO) {
+    public AgendaDTO crearAgenda(AgendaDTO agendaDTO) {
         Agenda agenda = convertirAAgenda(agendaDTO);
         agenda = agendaRepository.save(agenda);
         convertirAAgrendaDTO(agenda);
+        return agendaDTO;
     }
 
     public void eliminarAgenda(Long idAgenda) {

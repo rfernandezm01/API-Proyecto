@@ -28,12 +28,12 @@ public class AgendaController {
     }
 
     @PostMapping
-    public ResponseEntity<String> crearAgenda(@RequestBody AgendaDTO agendaDTO) {
+    public ResponseEntity<AgendaDTO> crearAgenda(@RequestBody AgendaDTO agendaDTO) {
         try {
-            agendaService.crearAgenda(agendaDTO);
-            return ResponseEntity.ok("Agenda creada correctamente.");
+            AgendaDTO creada = agendaService.crearAgenda(agendaDTO);
+            return ResponseEntity.ok(creada);
         } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error al crear la agenda: " + e.getMessage());
+            return ResponseEntity.status(500).build();
         }
     }
 

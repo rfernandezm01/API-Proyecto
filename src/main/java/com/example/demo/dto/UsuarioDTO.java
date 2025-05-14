@@ -16,7 +16,6 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    // Getters y Setters
     public Long getIdUsuario() {
         return idUsuario;
     }
@@ -45,8 +44,8 @@ public class UsuarioDTO {
         return password;
     }
 
-    public void setPassword(String contraseña) {
-        this.password = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getQuery() {

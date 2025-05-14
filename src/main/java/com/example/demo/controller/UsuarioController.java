@@ -41,9 +41,13 @@ public class UsuarioController {
         Optional<UsuarioDTO> usuario = usuarioService.obtenerPorEmail(request.getEmail());
 
         if (usuario.isPresent() && usuario.get().getPassword().equals(request.getPassword())) {
-            return ResponseEntity.ok(new LoginResponse(true, "Inicio de sesión exitoso."));
+            return ResponseEntity.ok(
+                    new LoginResponse(true, "Inicio de sesión exitoso.", usuario.get().getNombreUsuario())
+            );
         } else {
-            return ResponseEntity.ok(new LoginResponse(false, "Correo o contraseña incorrectos."));
+            return ResponseEntity.ok(
+                    new LoginResponse(false, "Correo o contraseña incorrectos.", null)
+            );
         }
     }
 
