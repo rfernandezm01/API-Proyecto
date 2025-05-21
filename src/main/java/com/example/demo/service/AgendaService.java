@@ -7,8 +7,10 @@ import com.example.demo.AgendaRepository;
 import com.example.demo.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,44 +22,38 @@ public class AgendaService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    private AgendaDTO convertirAAgrendaDTO(Agenda agenda) {
-        List<Long> idUsuarios = agenda.getUsuarios().stream()
-                .map(Usuario::getIdUsuario)
-                .collect(Collectors.toList());
-
-        return new AgendaDTO(agenda.getIdAgenda(), agenda.getNombreAgenda(), idUsuarios);
-    }
-
-    private Agenda convertirAAgenda(AgendaDTO agendaDTO) {
-        List<Usuario> usuarios = agendaDTO.getIdUsuarios().stream()
-                .map(id -> usuarioRepository.findById(id).orElse(null))
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-
-        Agenda agenda = new Agenda();
-        agenda.setIdAgenda(agendaDTO.getIdAgenda());
-        agenda.setNombreAgenda(agendaDTO.getNombreAgenda());
-        agenda.setUsuarios(usuarios);
-        return agenda;
-    }
-
     public List<AgendaDTO> obtenerTodas() {
-        List<Agenda> agendas = agendaRepository.findAll();
-        return agendas.stream().map(this::convertirAAgrendaDTO).collect(Collectors.toList());
+        return agendaRepository.findAll().stream()
+                .map(Agenda::toDTO)
+                .collect(Collectors.toList());
     }
 
     public Optional<AgendaDTO> obtenerPorId(Long idAgenda) {
-        return agendaRepository.findById(idAgenda).map(this::convertirAAgrendaDTO);
+        return agendaRepository.findById(idAgenda)
+                .map(Agenda::toDTO);
     }
 
+    @Transactional(readOnly = true)
+    public Optional<Agenda> obtenerEntidadPorId(Long idAgenda) {
+        return agendaRepository.findById(idAgenda);
+    }
+
+
     public AgendaDTO crearAgenda(AgendaDTO agendaDTO) {
-        Agenda agenda = convertirAAgenda(agendaDTO);
-        agenda = agendaRepository.save(agenda);
-        convertirAAgrendaDTO(agenda);
-        return agendaDTO;
+        List<Usuario> usuariosEntidad = agendaDTO.getIdUsuarios().stream()
+                .map(id -> usuarioRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Usuario no encontrado con id: " + id)))
+                .collect(Collectors.toList());
+
+        Agenda agenda = new Agenda(agendaDTO.getNombreAgenda(), usuariosEntidad);
+        Agenda guardada = agendaRepository.save(agenda);
+        return guardada.toDTO();
     }
 
     public void eliminarAgenda(Long idAgenda) {
+        if (!agendaRepository.existsById(idAgenda)) {
+            throw new RuntimeException("Agenda no encontrada con id: " + idAgenda);
+        }
         agendaRepository.deleteById(idAgenda);
     }
 }
