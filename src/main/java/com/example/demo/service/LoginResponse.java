@@ -3,7 +3,7 @@ package com.example.demo.service;
 public class LoginResponse {
     private boolean success;
     private String message;
-    private String nombreUsuario; // <- campo nuevo
+    private String nombreUsuario;
 
     public LoginResponse(boolean success, String message, String nombreUsuario) {
         this.success = success;
